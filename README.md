@@ -20,6 +20,11 @@ The goals / steps of this project are the following:
 [image6]: ./Output/7.png
 [image7]: ./Output/8.png
 
+[image8]: ./Output/9.png
+[image9]: ./Output/grey.png
+[image10]: ./Output/10.png
+
+
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
@@ -75,6 +80,7 @@ I trained a linear SVM using `LinearSVC` in line 52-55 of cell 5. The parameters
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 I decided to search window positions at 10 scales all over the image in cell 9:
+![alt text][image8]
 
 |No.|Y Start-Stop     		|     Scale	     		| 
 |:-:|:---------------------:|:---------------------:| 
@@ -92,10 +98,8 @@ I decided to search window positions at 10 scales all over the image in cell 9:
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on 10 scales using YUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. Here are some example images:
-
 ![alt text][image5]
-![alt text][image6]
-![alt text][image7]
+
 ---
 
 ### Video Implementation
@@ -110,15 +114,16 @@ I recorded the positions of positive detections in each frame of the video.  Fro
 
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
-### Here are six frames and their corresponding heatmaps:
-
+### Here are some frames and their corresponding heatmaps:
 ![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
 ![alt text][image6]
+![alt text][image7]
+
+### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap:
+![alt text][image9]
 
 ### Here the resulting bounding boxes are drawn onto one frame in the series:
-![alt text][image7]
+![alt text][image10]
 
 
 
