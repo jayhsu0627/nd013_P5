@@ -16,12 +16,9 @@ The goals / steps of this project are the following:
 [image2_3]: ./Output/4.png
 [image2_4]: ./Output/5.png
 
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[image5]: ./Output/6.png
+[image6]: ./Output/7.png
+[image7]: ./Output/8.png
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -71,21 +68,34 @@ spatial_size = (32, 32) # Spatial binning dimensions
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM using `LinearSVC` in line 52-55 of cell 5. The parameters of the training HOG features is shown in above.
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
+I decided to search window positions at 10 scales all over the image in cell 9:
 
-![alt text][image3]
+|No.|Y Start-Stop     		|     Scale	     		| 
+|:-:|:---------------------:|:---------------------:| 
+| 1 |400-500        		|1.0 					| 
+| 2 |400-500        		|1.3 					| 
+| 3 |410-500        		|1.4 					| 
+| 4 |420-556         		|1.6 					| 
+| 5 |430-556        		|1.8 					| 
+| 6 |430-556        		|2.0 					| 
+| 7 |440-556        		|1.9 					| 
+| 8 |400-556        		|1.3 					| 
+| 9 |400-556        		|2.2 					| 
+| 10|500-656        		|3.0 					| 
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on 10 scales using YUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. Here are some example images:
 
-![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
 ---
 
 ### Video Implementation
@@ -107,7 +117,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 ### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
 ![alt text][image6]
 
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
+### Here the resulting bounding boxes are drawn onto one frame in the series:
 ![alt text][image7]
 
 
