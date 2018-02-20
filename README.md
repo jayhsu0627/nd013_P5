@@ -133,5 +133,13 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
+* To enhance the quality of the model, I push two packages of data into training set. The type of the data is jpg and png. Since the `mpimg.imread` would take png as [0,1], so I enlarge the png picture by * 255:
+```
+        if 'png' in file:
+            image = mpimg.imread(file)
+            image = image.astype(np.float32)*255
+        else:
+            image = mpimg.imread(file)
+```
+line 44-48 in cell 4. In this way, all the image would be training as [0,255] data range and so as the frame take from the video.
+* The interesting part of the project is to adjust the parameters when training the svc model. I first failed with `RGB`, `HSV` colorspace and (16,16) spatial size.
